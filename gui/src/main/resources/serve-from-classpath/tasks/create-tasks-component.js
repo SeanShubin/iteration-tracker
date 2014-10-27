@@ -2,30 +2,38 @@ define([
     'jquery',
     'underscore',
     'underscore.string',
-    'text!todo/sean/components/task-row-template.html',
-    'text!todo/sean/components/tasks-table-template.html',
+    'text!tasks/task-row-template.html',
+    'text!tasks/tasks-table-template.html',
 ], function ($, _, _s, taskRowTemplate, tasksTableTemplate) {
     'use strict';
-    function createTasksComponent(options) {
-        var dom, setTasks, appendTaskToTable, taskRowsContainer, createTaskRow;
+    function createTasksComponent() {
+        var object, dom, setTasks, appendTaskToTable, taskRowsContainer, createTaskRow, initialize, newTaskEl;
         dom = $(tasksTableTemplate);
         taskRowsContainer = dom.find('.task-rows-container');
+        newTaskEl = dom.find('.new-task');
         setTasks = function (tasks) {
-            _.each(tasks, appendTaskToTable)
+            _.each(tasks, appendTaskToTable);
+            return object;
         };
-        setTasks(options.tasks);
         appendTaskToTable = function (task) {
             var taskRow = createTaskRow(task);
             taskRowsContainer.append(taskRow)
         };
         createTaskRow = function(task){
             var taskRowEl = $(taskRowTemplate);
-            taskRowEl.find('.task-name').text(task)
+            taskRowEl.find('.task-name').text(task);
+            return taskRowEl;
         };
-        return {
+        initialize = function(){
+            setTasks(['User Interface', 'Business Logic', 'Database Integration']);
+            newTaskEl.focus();
+            return object;
+        };
+        object = {
             dom: dom,
-            setTasks: setTasks
+            initialize: initialize
         };
+        return object;
     }
 
     return createTasksComponent;

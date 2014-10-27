@@ -5,6 +5,7 @@
     <title>Index</title>
     <script type="text/javascript" src="require-config.js"></script>
     <script type="text/javascript" src="lib/require.js"></script>
+    <link rel="stylesheet" type="text/css" href="tasks/tasks.css">
 </head>
 <body>
 <div class="application"></div>
@@ -14,7 +15,9 @@
         'jquery',
         'tasks/create-tasks-component'
     ], function (dom, $, createTasksComponent) {
-        $(dom).find('.application').append(createTasksComponent());
+        var component = createTasksComponent();
+        $(dom).find('.application').append(component.dom);
+        component.initialize();
     });
 </script>
 </body>
