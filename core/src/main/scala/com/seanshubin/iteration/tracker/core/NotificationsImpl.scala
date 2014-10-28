@@ -5,15 +5,16 @@ import java.io.{PrintWriter, StringWriter}
 import com.seanshubin.http.values.core.{RequestValue, ResponseValue}
 import org.joda.time.{DateTime, DateTimeZone}
 
-class NotificationsImpl(clock:Clock) extends Notifications {
+class NotificationsImpl(clock: Clock) extends Notifications {
   private val lock = new Object()
+
   override def request(request: RequestValue): Unit = {
     lock.synchronized {
       wrapLines("request", request.toMultipleLineString).foreach(println)
     }
   }
 
-  override def response(request:RequestValue, response: ResponseValue): Unit = {
+  override def response(request: RequestValue, response: ResponseValue): Unit = {
     lock.synchronized {
       wrapLines("response", request.toMultipleLineString ++ response.toMultipleLineString).foreach(println)
     }
@@ -25,16 +26,16 @@ class NotificationsImpl(clock:Clock) extends Notifications {
     }
   }
 
-  def exceptionLines(ex:Throwable):Seq[String] = {
+  def exceptionLines(ex: Throwable): Seq[String] = {
     val stringWriter = new StringWriter()
     val printWriter = new PrintWriter(stringWriter)
     ex.printStackTrace(printWriter)
     val s = stringWriter.toString
-    val lines = s.split("""\r\n|\r|\n""").toSeq
+    val lines = s.split( """\r\n|\r|\n""").toSeq
     lines
   }
 
-  def wrapLines(caption:String, lines:Seq[String]):Seq[String] = {
+  def wrapLines(caption: String, lines: Seq[String]): Seq[String] = {
     val timeZone = DateTimeZone.forID("UTC")
     val now = new DateTime(clock.currentTimeMillis(), timeZone)
     val timeString = now.toString

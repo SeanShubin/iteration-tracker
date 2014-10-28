@@ -19,12 +19,12 @@ define([
             var taskRow = createTaskRow(task);
             taskRowsContainer.append(taskRow)
         };
-        createTaskRow = function(task){
+        createTaskRow = function (task) {
             var taskRowEl = $(taskRowTemplate);
             taskRowEl.find('.task-name').text(task);
             return taskRowEl;
         };
-        initialize = function(){
+        initialize = function () {
             setTasks(['User Interface', 'Business Logic', 'Database Integration']);
             newTaskEl.focus();
             return object;

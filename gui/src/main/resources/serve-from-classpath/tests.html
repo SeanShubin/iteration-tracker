@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title>Tests</title>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <script type="text/javascript" src="require-config.js"></script>
+    <script type="text/javascript" src="lib/require.js"></script>
+    <link rel="stylesheet" type="text/css" href="lib/qunit-1.15.0.css">
+</head>
+<body>
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+<script type="text/javascript">
+    require([
+        'qunit',
+        'test/tasks/create-tasks-component-test'
+    ], function (qunit) {
+        'use strict';
+        qunit.load();
+        qunit.start();
+    });
+</script>
+</body>
+</html>
