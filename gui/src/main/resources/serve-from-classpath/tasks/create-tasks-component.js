@@ -6,13 +6,13 @@ define([
     'text!tasks/tasks-table-template.html',
 ], function ($, _, _s, taskRowTemplate, tasksTableTemplate) {
     'use strict';
-    function createTasksComponent() {
-        var object, dom, setTasks, appendTaskToTable, taskRowsContainer, createTaskRow, initialize, newTaskEl;
+    function createTasksComponent(options) {
+        var object, dom, taskNamesResponse, appendTaskToTable, taskRowsContainer, createTaskRow, initialize, newTaskEl;
         dom = $(tasksTableTemplate);
         taskRowsContainer = dom.find('.task-rows-container');
         newTaskEl = dom.find('.new-task');
-        setTasks = function (tasks) {
-            _.each(tasks, appendTaskToTable);
+        taskNamesResponse = function (response) {
+            _.each(response.body, appendTaskToTable);
             return object;
         };
         appendTaskToTable = function (task) {
@@ -25,7 +25,7 @@ define([
             return taskRowEl;
         };
         initialize = function () {
-            setTasks(['User Interface', 'Business Logic', 'Database Integration']);
+            options.jsonOverHttp({method:'get', uri:'database/tasks'}).then(taskNamesResponse);
             newTaskEl.focus();
             return object;
         };

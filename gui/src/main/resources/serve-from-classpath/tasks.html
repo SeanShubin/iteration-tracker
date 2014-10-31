@@ -13,9 +13,10 @@
     require([
         'lib/domReady!',
         'jquery',
-        'tasks/create-tasks-component'
-    ], function (dom, $, createTasksComponent) {
-        var component = createTasksComponent();
+        'tasks/create-tasks-component',
+        'http/json-over-http'
+    ], function (dom, $, createTasksComponent, jsonOverHttp) {
+        var component = createTasksComponent({jsonOverHttp: jsonOverHttp});
         $(dom).find('.application').append(component.dom);
         component.initialize();
     });
