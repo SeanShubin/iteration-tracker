@@ -2,23 +2,17 @@ define([
     'lib/domReady!',
     'jquery',
     'qunit',
-    'tasks/create-tasks-component'], function (dom, $, qunit, createTasksComponent) {
+    'tasks/create-tasks-component',
+    'test/mocks/json-over-http-mock'], function (dom, $, qunit, createTasksComponent, createJsonOverHttpMock) {
     'use strict';
     var createHelper = function () {
-        var component, stubJsonOverHttp, requests, responses;
-        requests = [];
-        responses = [];
-        stubJsonOverHttp = function (options) {
-            var response = $.Deferred();
-            requests.push(options);
-            responses.push(response);
-            return response;
-        };
-        component = createTasksComponent({jsonOverHttp: stubJsonOverHttp});
+        var component, jsonOverHttpMock;
+        jsonOverHttpMock = createJsonOverHttpMock();
+        component = createTasksComponent({jsonOverHttp: jsonOverHttpMock.jsonOverHttp});
         return {
             component: component,
-            requests: requests,
-            responses: responses
+            requests: jsonOverHttpMock.requests,
+            responses: jsonOverHttpMock.responses
         };
     };
     qunit.module('create-tasks-component-test');
