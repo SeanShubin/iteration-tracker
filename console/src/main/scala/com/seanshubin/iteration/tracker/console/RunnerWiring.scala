@@ -2,7 +2,7 @@ package com.seanshubin.iteration.tracker.console
 
 import com.seanshubin.http.values.core._
 import com.seanshubin.iteration.tracker.core._
-import com.seanshubin.iteration.tracker.server.JettyHttpServer
+import com.seanshubin.iteration.tracker.server.{DatabaseReceiver, DatabaseGate, JettyHttpServer}
 
 trait RunnerWiring {
   def configuration: Configuration
@@ -15,7 +15,9 @@ trait RunnerWiring {
   lazy val redirectGate: Gate = new RedirectGate("redirect", redirectReceiver, configuration.redirectFunction)
   lazy val classLoaderGate: Gate = new ClassLoaderGate(
     "class-loader", classLoaderReceiver, configuration.contentByExtension)
-  lazy val gates: Seq[Gate] = Seq(redirectGate, classLoaderGate)
+  lazy val databaseReceiver:Receiver = new DatabaseReceiver
+  lazy val databaseGate:Gate = new DatabaseGate("database", new DatabaseReceiver)
+  lazy val gates: Seq[Gate] = Seq(redirectGate, databaseGate, classLoaderGate)
   lazy val dispatcher: Receiver = new DispatchingReceiver(gates)
   lazy val clock: Clock = new ClockImpl()
   lazy val notifications: Notifications = new NotificationsImpl(clock)
