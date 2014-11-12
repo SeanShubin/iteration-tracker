@@ -13,7 +13,10 @@
                 "http://epeli.github.io/underscore.string/lib/underscore.string.js",
                 "http://code.jquery.com/qunit/qunit-1.15.0.js",
                 "http://code.jquery.com/qunit/qunit-1.15.0.css",
-                "http://sinonjs.org/releases/sinon-1.10.3.js"
+                "http://sinonjs.org/releases/sinon-1.10.3.js",
+                "http://cdnjs.cloudflare.com/ajax/libs/react/0.12.0/JSXTransformer.js",
+                "http://cdnjs.cloudflare.com/ajax/libs/react/0.12.0/react-with-addons.js",
+                "https://raw.githubusercontent.com/philix/jsx-requirejs-plugin/master/js/jsx.js"
             ]
         }
     ]
