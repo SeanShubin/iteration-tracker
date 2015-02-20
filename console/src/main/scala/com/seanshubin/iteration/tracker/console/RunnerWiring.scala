@@ -2,7 +2,7 @@ package com.seanshubin.iteration.tracker.console
 
 import com.seanshubin.http.values.core._
 import com.seanshubin.iteration.tracker.core._
-import com.seanshubin.iteration.tracker.server.{DatabaseReceiver, DatabaseGate, JettyHttpServer}
+import com.seanshubin.iteration.tracker.server.{DatabaseReceiver, DatabaseRoute, JettyHttpServer}
 
 trait RunnerWiring {
   def configuration: Configuration
@@ -12,13 +12,13 @@ trait RunnerWiring {
   lazy val classLoaderReceiver: Receiver = new ClassLoaderReceiver(
     classLoader, configuration.classLoaderPrefix, configuration.contentByExtension, configuration.overridePath)
   lazy val echoReceiver: Receiver = new EchoReceiver()
-  lazy val redirectGate: Gate = new RedirectGate("redirect", redirectReceiver, configuration.redirectFunction)
-  lazy val classLoaderGate: Gate = new ClassLoaderGate(
+  lazy val redirectRoute: Route = new RedirectRoute("redirect", redirectReceiver, configuration.redirectFunction)
+  lazy val classLoaderRoute: Route = new ClassLoaderRoute(
     "class-loader", classLoaderReceiver, configuration.contentByExtension)
   lazy val databaseReceiver:Receiver = new DatabaseReceiver
-  lazy val databaseGate:Gate = new DatabaseGate("database", new DatabaseReceiver)
-  lazy val gates: Seq[Gate] = Seq(redirectGate, databaseGate, classLoaderGate)
-  lazy val dispatcher: Receiver = new DispatchingReceiver(gates)
+  lazy val databaseRoute:Route = new DatabaseRoute("database", new DatabaseReceiver)
+  lazy val routes: Seq[Route] = Seq(redirectRoute, databaseRoute, classLoaderRoute)
+  lazy val dispatcher: Receiver = new DispatchingReceiver(routes)
   lazy val clock: Clock = new ClockImpl()
   lazy val notifications: Notifications = new NotificationsImpl(clock)
   lazy val receiver: Receiver = new FallbackReceiver(

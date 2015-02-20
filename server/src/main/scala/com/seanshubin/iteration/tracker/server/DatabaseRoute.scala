@@ -1,8 +1,8 @@
 package com.seanshubin.iteration.tracker.server
 
-import com.seanshubin.http.values.core.{Receiver, RequestValue, Gate}
+import com.seanshubin.http.values.core.{Receiver, RequestValue, Route}
 
-class DatabaseGate(name:String, receiver:Receiver) extends Gate(name, receiver) {
+class DatabaseRoute(name:String, receiver:Receiver) extends Route(name, receiver) {
   override def accept(request: RequestValue): Boolean = {
     val shouldAccept = request.uriString.startsWith("/database/")
     shouldAccept
