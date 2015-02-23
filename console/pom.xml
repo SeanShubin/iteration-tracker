@@ -11,17 +11,17 @@
         <dependency>
             <groupId>com.seanshubin</groupId>
             <artifactId>iteration-tracker-core</artifactId>
-            <version>${pom.parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>com.seanshubin</groupId>
             <artifactId>iteration-tracker-server</artifactId>
-            <version>${pom.parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>com.seanshubin</groupId>
             <artifactId>iteration-tracker-gui</artifactId>
-            <version>${pom.parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.scala-lang</groupId>
