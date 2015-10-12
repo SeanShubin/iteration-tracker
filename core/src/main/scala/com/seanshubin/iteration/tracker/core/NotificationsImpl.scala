@@ -1,9 +1,9 @@
 package com.seanshubin.iteration.tracker.core
 
 import java.io.{PrintWriter, StringWriter}
+import java.time.{Clock, ZoneId, ZonedDateTime}
 
 import com.seanshubin.http.values.core.{RequestValue, ResponseValue}
-import org.joda.time.{DateTime, DateTimeZone}
 
 class NotificationsImpl(clock: Clock) extends Notifications {
   private val lock = new Object()
@@ -36,8 +36,8 @@ class NotificationsImpl(clock: Clock) extends Notifications {
   }
 
   def wrapLines(caption: String, lines: Seq[String]): Seq[String] = {
-    val timeZone = DateTimeZone.forID("UTC")
-    val now = new DateTime(clock.currentTimeMillis(), timeZone)
+    val zoneId = ZoneId.of("UTC")
+    val now = ZonedDateTime.ofInstant(clock.instant(), zoneId)
     val timeString = now.toString
     val stars = "*" * 30
     val headerBody = s"$stars $caption ($timeString) $stars"

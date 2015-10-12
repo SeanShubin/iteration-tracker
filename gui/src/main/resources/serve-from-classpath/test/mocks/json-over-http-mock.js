@@ -1,6 +1,6 @@
 define(['jquery'], function ($) {
     'use strict';
-    return function(){
+    return function () {
         var requests, responses, jsonOverHttp;
         requests = [];
         responses = [];

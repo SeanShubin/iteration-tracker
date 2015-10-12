@@ -25,7 +25,7 @@ define([
             return taskRowEl;
         };
         initialize = function () {
-            options.jsonOverHttp({method:'get', uri:'database/tasks'}).then(taskNamesResponse);
+            options.jsonOverHttp({method: 'get', uri: 'database/tasks'}).then(taskNamesResponse);
             newTaskEl.focus();
             return object;
         };
