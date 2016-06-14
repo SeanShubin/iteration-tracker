@@ -1,0 +1,33 @@
+{
+  reportDir generated/detangled
+  searchPaths
+  [
+    console/target/iteration-tracker.jar
+  ]
+  level 2
+  startsWith
+  {
+    include
+    [
+      [
+        com
+        seanshubin
+        iteration
+        tracker
+      ]
+    ]
+    exclude []
+    drop
+    [
+      [
+        com
+        seanshubin
+        iteration
+        tracker
+      ]
+    ]
+  }
+  ignoreFiles []
+  canFailBuild true
+  allowedInCycle []
+}
