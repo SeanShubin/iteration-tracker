@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.core.{JsonFactory, JsonParseException}
 import com.fasterxml.jackson.databind.{DeserializationFeature, ObjectMapper, SerializationFeature}
 import com.fasterxml.jackson.module.scala.DefaultScalaModule
-import com.seanshubin.http.values.core.StringUtil
+import com.seanshubin.http.values.domain.StringUtil
 
 import scala.collection.JavaConverters._
 

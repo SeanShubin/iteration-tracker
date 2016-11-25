@@ -3,7 +3,7 @@ package com.seanshubin.iteration.tracker.core
 import java.io.{PrintWriter, StringWriter}
 import java.time.{Clock, ZoneId, ZonedDateTime}
 
-import com.seanshubin.http.values.core.{RequestValue, ResponseValue}
+import com.seanshubin.http.values.domain.{RequestValue, ResponseValue}
 
 class NotificationsImpl(clock: Clock) extends Notifications {
   private val lock = new Object()

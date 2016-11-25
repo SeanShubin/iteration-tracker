@@ -2,7 +2,7 @@ package com.seanshubin.iteration.tracker.server
 
 import java.nio.charset.StandardCharsets
 
-import com.seanshubin.http.values.core._
+import com.seanshubin.http.values.domain._
 
 class DatabaseReceiver extends Receiver {
   override def receive(request: RequestValue): ResponseValue = {

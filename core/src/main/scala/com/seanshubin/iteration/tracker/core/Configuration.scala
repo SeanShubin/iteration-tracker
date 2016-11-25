@@ -1,6 +1,6 @@
 package com.seanshubin.iteration.tracker.core
 
-import com.seanshubin.http.values.core.ContentType
+import com.seanshubin.http.values.domain.ContentType
 
 case class Configuration(port: Int,
                          classLoaderPrefix: String,

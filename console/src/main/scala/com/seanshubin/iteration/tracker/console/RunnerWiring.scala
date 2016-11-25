@@ -2,7 +2,7 @@ package com.seanshubin.iteration.tracker.console
 
 import java.time.Clock
 
-import com.seanshubin.http.values.core._
+import com.seanshubin.http.values.domain._
 import com.seanshubin.iteration.tracker.core._
 import com.seanshubin.iteration.tracker.server.{DatabaseReceiver, DatabaseRoute, JettyHttpServer}
 
